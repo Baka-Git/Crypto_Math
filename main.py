@@ -5,7 +5,7 @@ from Modules.elipctic_curve_tools import *
 
 def run():
     args = parse()
-    print(args)
+    #print(args)
     if args is False:
         print("Wrong arguments were given!")
         return False
@@ -23,19 +23,29 @@ def run():
         find_group_mult(args[5], True)
     if args[6] is not None:
         find_group_orders(args[6], True)
-    #  [0-gcd, 1-factor, 2-crt, 3-inverse, 4-phi, 5-group, 6-orders_of_group, 7-curve, 8-p_point, 9-q_point, 10-field, 11-point_on_curve, 12-order_of_ec, 13-add_points_ec]
+    # [0-gcd, 1-factor, 2-crt, 3-inverse, 4-phi, 5-group, 6-orders_of_group, 7-curve, 8-p_point, 9-q_point, 10-field,
+    # 11-point_on_curve, 12-order_of_ec, 13-add_points_ec, 14-order_of_the_one_point, 15-order_of_all_points,
+    # 16-mov_attack, 17-get_z_x_table ]
     # only control if curve is elliptic, ban 11-point_on_curve, 12-order_of_ec, 13-add_points_ec
     if args[7] is not None and (args[11] is False and args[12] is False and args[13] is False):
         is_elliptic(args[7],True)
     # only control if point is on EC curve, need Curve, Point, Field,
     if args[11]:
-        is_point_on_elliptic_curve(args[8][0], args[8][1], args[10][0], args[7])
+        is_point_on_elliptic_curve(args[8][0], args[8][1], args[10][0], args[7], True)
     # get order of EC
     if args[12]:
         order_of_ec(args[10][0], args[7],True)
     # adds points
     if args[13]:
         add_point([args[8][0], args[8][1]], [args[9][0], args[9][1]], args[10][0], args[7],True)
+    if args[14]:
+        order_of_point(args[8],args[10][0],args[7],True)
+    if args[15]:
+        order_of_points(args[10][0],args[7])
+    if args[16] is not None:
+        mov_attack(args[16][0],args[16][1],args[16][2])
+    if args[17] is not None:
+        get_z_x_table(args[17][0],args[17][1])
 
 
 run()

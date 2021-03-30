@@ -173,6 +173,7 @@ def order_of_points(f, curve):
                 break
     for line in list_of_point_orders:
         print(line)
+    return list_of_point_orders
 
 
 def possible_orders(order_of_curve, new_field):
@@ -198,24 +199,28 @@ def mov_attack(secret, g, order):
 
 def get_z_x_table(g, x):
     order = order_of_num(g, x)
-    print(order)
-    print(len(find_group_mult(5,False)))
-    if order != len(find_group_mult(5,False)):
+    if order != len(find_group_mult(5, False)):
         print("Given G is not generator!")
         return False
     list_of_elements = []
     for i in range(0, order):
-        list_of_elements.append((g**i) % x)
-    print(list_of_elements)
-
-    return True
-
+        list_of_elements.append((g ** i) % x)
+    # form table
+    list_of_table = []
+    for element in list_of_elements:
+        help_line = []
+        for i in range(0, order):
+            help_line.append((element ** i) % x)
+        list_of_table.append(help_line)
+    for line in list_of_table:
+        print(line)
+    return list_of_table
 
 # is_elliptic([1, -1, 2, 1, -5, 3, 2])
 # order_of_ec(7, [1, 0, 0, 1, 0, -1, -1],True)
 # add_point([0,1],[0,-1],7,[1,0,0,1,0,1,1])
-# order_of_points(5, [1, 0, 0, 1, 0, -1, 1])
+# print(order_of_points(5, [1, 0, 0, 1, 0, -1, 1]))
 # order_of_point([4,1],5,[1,0,0,1,0,-1,1])
-# possible_orders(36, 22)
+# print(possible_orders(36, 22))
 # mov_attack(13,6,16)
-get_z_x_table(2, 5)
+# get_z_x_table(2, 5)
