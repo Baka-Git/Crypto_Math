@@ -71,7 +71,7 @@ def find_group_mult(number, regime):
     return list_of_group
 
 
-def gener(num, mod):
+def order_of_num(num, mod):
     order = 1
     help_num = num
     gate = True
@@ -91,7 +91,7 @@ def find_group_orders(number, regime):
     for i in range(0, number):
         list_of_orders.append([i])
     for inter in group:
-        order = gener(inter, number)
+        order = order_of_num(inter, number)
         list_of_orders[order].append(inter)
     for i in range(0, number):
         if len(list_of_orders[number - 1 - i]) == 1:
@@ -105,4 +105,5 @@ def find_group_orders(number, regime):
 
 
 
-#find_group_orders(11, True)
+#find_group_orders(5, True)
+#find_group_mult(5,True)

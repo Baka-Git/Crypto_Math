@@ -17,10 +17,21 @@ def parse():
                                         "Example for EC: y^2 "
                                         "- 1 * y + 2 * xy = x^3 - 5 * x^2 + 3 * x + 2: '--curve "
                                         "1,-1,2,1,-5,3,2'")
+    parser.add_argument("--p_point", help="Give program information about P, P = [x,y] -> format '--p_point x,y'")
+    parser.add_argument("--q_point", help="Give program information about Q, Q = [x,y] -> format '--q_point x,y'")
+    parser.add_argument("--field", help="Give program information about F, format '--field FIELD'")
+    parser.add_argument("--order_of_ec", help="In case first number is negative use '/' instead of '-' "
+                                                 "(Just ounce!)! Format: --order_of_ec"
+                                                 "EC + Field must be given! Example: '--curve 1,-1,2,1,-5,3,2  --field 5 --order_of_ec'",
+                        action="store_true")
     parser.add_argument("--point_on_curve", help="In case first number is negative use '/' instead of '-' "
-                                                 "(Just ounce!)! Format: --point_on_curve X,Y,F"
-                                                 "EC must be given! Example: '--curve 1,-1,2,1,-5,3,2 --point_on_curve "
-                                                 "2,3,5'")
+                                                 "(Just ounce!)! Format: --point_on_curve"
+                                                 "EC + Point + Field must be given! Example: '--curve 1,-1,2,1,-5,3,2 --p_point 0,1 --field 5 --point_on_curve'",
+                        action="store_true")
+    parser.add_argument("--add_points_ec", help="In case first number is negative use '/' instead of '-' "
+                                                "(Just ounce!)! Format: --add_points_ec Xp,Yp,Xq,Yq,F"
+                                                "EC + Points + Field must be given! Example: '--curve 1,-1,2,1,-5,3,2 --p_point 0,1 --q_point 0,-1 --add_points_ec'",
+                        action="store_true")
     args = parser.parse_args()
     print(args)
     args = control(args)
@@ -58,29 +69,48 @@ def control(args):
         group = get_int(group)
         if group is False:
             return False
-    orders_of_group= args.orders_of_group
+    orders_of_group = args.orders_of_group
     if orders_of_group is not None:
         orders_of_group = get_int(orders_of_group)
         if orders_of_group is False:
             return False
-    curve=args.curve
+    curve = args.curve
     if curve is not None:
         curve = get_ints(curve)
         if curve is False:
             return False
-    point_on_curve=args.point_on_curve
-    if point_on_curve is not None:
-        point_on_curve = get_ints(point_on_curve)
-        if point_on_curve is False or curve is None:
+    p_point = args.p_point
+    if p_point is not None:
+        p_point = get_ints(p_point)
+        if p_point is False or curve is None:
             return False
-
-    return [gcd, factor, crt, inverse, phi, group, orders_of_group, curve, point_on_curve]
+    q_point = args.q_point
+    if q_point is not None:
+        q_point = get_ints(q_point)
+        if q_point is False or curve is None:
+            return False
+    field = args.field
+    if field is not None:
+        field = get_ints(field)
+        if field is False or curve is None:
+            return False
+    point_on_curve = args.point_on_curve
+    if point_on_curve and p_point is None:
+        return False
+    order_of_ec=args.order_of_ec
+    if order_of_ec and field is None:
+        return False
+    add_points_ec = args.add_points_ec
+    if add_points_ec and (p_point is None or q_point is None):
+        return False
+    return [gcd, factor, crt, inverse, phi, group, orders_of_group, curve, p_point, q_point, field, point_on_curve,
+            order_of_ec, add_points_ec]
 
 
 def get_ints(args):
     list_of_ints = args.split(",")
-    if list_of_ints[0][0]=="/":
-        list_of_ints[0]="-"+list_of_ints[0][1:]
+    if list_of_ints[0][0] == "/":
+        list_of_ints[0] = "-" + list_of_ints[0][1:]
     for inter in range(0, len(list_of_ints)):
         list_of_ints[inter] = get_int(list_of_ints[inter])
         if list_of_ints[inter] is False:
