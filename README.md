@@ -1,2 +1,2 @@
-# Crypto_Math_CPT
+# Crypto_Math
  Tools for cryptography
