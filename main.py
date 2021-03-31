@@ -46,6 +46,7 @@ def run():
         mov_attack(args[16][0],args[16][1],args[16][2])
     if args[17] is not None:
         get_z_x_table(args[17][0],args[17][1])
-
+    if args:
+        get_bilininear_help()
 
 run()

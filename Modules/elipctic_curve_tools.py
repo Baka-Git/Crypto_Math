@@ -216,6 +216,19 @@ def get_z_x_table(g, x):
         print(line)
     return list_of_table
 
+
+def get_bilininear_help():
+    print("e(P; O) = e(O; Q) = 1\n\n" +
+          "e(-P; Q) = e(P; Q)^1 = e(P; -Q)\n\n" +
+          "e(a * P; Q) = e(P; Q)^a = e(P; a * Q)\n\n" +
+          "e(a * P; b * Q) = e(P; Q)^(a*b)\n\n" +
+          "e(P1 + P2; Q) = e(P1; Q) * e(P2; Q) and e(P; Q1 + Q2) = e(P; Q1) * e(P; Q2)\n\n" +
+          "e(f(P); f(Q)) = f(e(P;Q)) where f is an automorphism (function)\n\n" +
+          "Weil pairing (in addition):\n\n" +
+          "e(P; Q) = e(Q; P)^(-1)\n\n" +
+          "e(P; P) = 1")
+    return True
+
 # is_elliptic([1, -1, 2, 1, -5, 3, 2])
 # order_of_ec(7, [1, 0, 0, 1, 0, -1, -1],True)
 # add_point([0,1],[0,-1],7,[1,0,0,1,0,1,1])
@@ -224,3 +237,4 @@ def get_z_x_table(g, x):
 # print(possible_orders(36, 22))
 # mov_attack(13,6,16)
 # get_z_x_table(2, 5)
+#get_bilininear_help()
