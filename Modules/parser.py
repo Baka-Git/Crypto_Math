@@ -46,10 +46,9 @@ def parse():
                         action="store_true")
     parser.add_argument("--order_of_the_one_point",
                         help="Function for getting order of given point on given EC. Format: --order_of_the_one_point. EC + Point + Field must be given! "
-                             "Example: '--curve 1,-1,2,1,-5,3,2 --p_point 0,1 --order_of_the_one_point'", action="store_true")
+                             "Example: '--curve 1,0,0,1,0,-1,1 --p_point 4,1 --field 5 --order_of_the_one_point'", action="store_true")
     parser.add_argument("--order_of_all_points",
-                        help="Function for getting all orders of point on given EC. Format: --order_of_the_one_point. EC + Field must be given! Example: '--curve 1,-1,2,1,-5,3,"
-                             "2 --order_of_all_points'", action="store_true")
+                        help="Function for getting all orders of point on given EC. Format: --order_of_the_one_point. EC + Field must be given! Example: ' --curve 1,0,0,1,0,-1,1 --field 5 --order_of_all_point'", action="store_true")
     parser.add_argument("--possible_orders",
                         help="Function for finding all possible orders, if field is changed. Format --possible_orders ORDER_OF_CURVE,NEW_FIELD. Example: '--possible_orders 5,15'")
     parser.add_argument("--mov_attack",
