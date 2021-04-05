@@ -32,29 +32,26 @@ def parse():
     parser.add_argument("--order_of_ec",
                         help="Function for finding order of given curve. In case first number is negative use '/' instead of '-' "
                              "(Just ounce!)! Format: --order_of_ec"
-                             "EC + Field must be given! Example: '--curve 1,-1,2,1,-5,3,"
-                             "2  --field 5 --order_of_ec'",
+                             "EC + Field must be given! Example: '--curve 1,0,0,1,0,-1,-1  --field 7 --order_of_ec'",
                         action="store_true")
     parser.add_argument("--point_on_curve",
                         help="Function for finding out if given point is on given curve. In case first number is negative use '/' instead of '-' "
                              "(Just ounce!)! Format: --point_on_curve"
-                             "EC + Point + Field must be given! Example: '--curve 1,-1,2,1,-5,3,"
-                             "2 --p_point 0,1 --field 5 --point_on_curve'",
+                             "EC + P_Point + Field must be given! Example: '--curve 1,0,0,1,0,2,1 --p_point 0,1 --field 7 --point_on_curve'",
                         action="store_true")
     parser.add_argument("--add_points_ec",
                         help="Function for adding two given points. In case first number is negative use '/' instead of '-' "
-                             "(Just ounce!)! Format: --add_points_ec Xp,Yp,Xq,Yq,F"
-                             "EC + Points + Field must be given! Example: '--curve 1,-1,2,1,-5,3,"
-                             "2 --p_point 0,1 --q_point 0,-1 --add_points_ec'",
+                             "(Just ounce!)! Format: --add_points_ec"
+                             "EC + Points + Field must be given! Example: '--curve 1,0,0,1,0,2,1 --p_point 1,2 --q_point 0,1 --add_points_ec --field 7'",
                         action="store_true")
     parser.add_argument("--order_of_the_one_point",
-                        help="Function for getting order of given point on given EC. Format: --order_of_the_one_point. EC + Point + Field must be given! Example: '--curve 1,-1,2,1,-5,3,"
-                             "2 --p_point 0,1 --order_of_the_point'", action="store_true")
+                        help="Function for getting order of given point on given EC. Format: --order_of_the_one_point. EC + Point + Field must be given! "
+                             "Example: '--curve 1,-1,2,1,-5,3,2 --p_point 0,1 --order_of_the_one_point'", action="store_true")
     parser.add_argument("--order_of_all_points",
                         help="Function for getting all orders of point on given EC. Format: --order_of_the_one_point. EC + Field must be given! Example: '--curve 1,-1,2,1,-5,3,"
                              "2 --order_of_all_points'", action="store_true")
     parser.add_argument("--possible_orders",
-                        help="Function for finding all possible orders, if field is changed. Format --possible_orders ORDER_OF_CURVE,NEW_FIELD. Example: '--possible_orders -5,9'")
+                        help="Function for finding all possible orders, if field is changed. Format --possible_orders ORDER_OF_CURVE,NEW_FIELD. Example: '--possible_orders 5,15'")
     parser.add_argument("--mov_attack",
                         help="Function for finding out secret by MOV Attack. Format --mov_attack SECRET,GENERATOR,ORDER. Example: '--mov_attack 5,2,11'")
     parser.add_argument("--get_z_x_table",
@@ -107,7 +104,7 @@ def control(args):
     curve = args.curve
     if curve is not None:
         curve = get_ints(curve)
-        if curve is False:
+        if curve is False or len(curve) != 7:
             return False
     p_point = args.p_point
     if p_point is not None:

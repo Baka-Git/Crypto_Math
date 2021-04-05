@@ -20,7 +20,7 @@ def is_elliptic(curve, regime):
             if curve[point] < 0:
                 help_curve[point] = abs(curve[point])
                 operation[point] = " - "
-        print("Elliptic curve: y^2" + operation[1] + str(help_curve[1]) + " * y" + operation[2] + str(
+        print("Given curve is elliptic.\nElliptic curve: y^2" + operation[1] + str(help_curve[1]) + " * y" + operation[2] + str(
             help_curve[2]) + " * xy = x^3" + operation[4] + str(help_curve[4]) + " * x^2" + operation[5] + str(
             help_curve[5]) + " * x" + operation[6] + str(help_curve[6]))
     return curve
@@ -70,10 +70,12 @@ def order_of_ec(f, curve, regime):
     line_points.append(["∞", "-", "-", "∞", "[∞,∞]"])
     order = 0
     list_of_point = []
+    if regime:
+        print(" x  | x part | y^2 | y   | Points")
     for line in line_points:
 
         if regime:
-            print(line)
+            print(same_size(line[0],4)+same_size(line[1],8)+same_size(line[2],5)+same_size(line[3],5)+same_size(line[4],20))
         if line[4] == "[∞,∞]":
             list_of_point.append(line[4])
             order += 1
@@ -147,6 +149,8 @@ def order_of_point(point, f, curve, regime):
     help_point = [point[0], point[1]]
     while True:
         help_point = add_point(help_point, point, f, curve, False)
+        if help_point is False:
+            return False
         order += 1
         if help_point == "[∞,∞]":
             if regime:
@@ -171,8 +175,9 @@ def order_of_points(f, curve):
             if list_of_point_orders[i][0] == order:
                 list_of_point_orders[i].append(point)
                 break
+    print("Orders    | Points")
     for line in list_of_point_orders:
-        print(line)
+        print(same_size(line[0],10)+" "+str(line[1:]))
     return list_of_point_orders
 
 
@@ -229,6 +234,13 @@ def get_bilininear_help():
           "e(P; P) = 1")
     return True
 
+def same_size(info, size):
+    string_info = " " + str(info)
+    while len(string_info) < size:
+        string_info += " "
+    string_info += "|"
+    return string_info
+
 # is_elliptic([1, -1, 2, 1, -5, 3, 2])
 # order_of_ec(7, [1, 0, 0, 1, 0, -1, -1],True)
 # add_point([0,1],[0,-1],7,[1,0,0,1,0,1,1])
@@ -238,3 +250,4 @@ def get_bilininear_help():
 # mov_attack(13,6,16)
 # get_z_x_table(2, 5)
 #get_bilininear_help()
+#order_of_point([0,1],7,[1,-1,2,1,-5,3,2],True)

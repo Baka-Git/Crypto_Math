@@ -5,12 +5,12 @@ from Modules.elipctic_curve_tools import *
 
 def run():
     args = parse()
-    #print(args)
+    print(args)
     if args is False:
         print("Wrong arguments were given!")
         return False
     if args[0] is not None:
-        gcd(args[0][0], args[0][1])
+        gcd(args[0][0], args[0][1],True)
     if args[1] is not None:
         factorization(args[1][0])
     if args[2] is not None:
@@ -28,25 +28,26 @@ def run():
     # 16-mov_attack, 17-get_z_x_table ]
     # only control if curve is elliptic, ban 11-point_on_curve, 12-order_of_ec, 13-add_points_ec
     if args[7] is not None and (args[11] is False and args[12] is False and args[13] is False):
-        is_elliptic(args[7],True)
+        is_elliptic(args[7], True)
     # only control if point is on EC curve, need Curve, Point, Field,
     if args[11]:
         is_point_on_elliptic_curve(args[8][0], args[8][1], args[10][0], args[7], True)
     # get order of EC
     if args[12]:
-        order_of_ec(args[10][0], args[7],True)
+        order_of_ec(args[10][0], args[7], True)
     # adds points
     if args[13]:
-        add_point([args[8][0], args[8][1]], [args[9][0], args[9][1]], args[10][0], args[7],True)
+        add_point([args[8][0], args[8][1]], [args[9][0], args[9][1]], args[10][0], args[7], True)
     if args[14]:
-        order_of_point(args[8],args[10][0],args[7],True)
+        order_of_point(args[8], args[10][0], args[7], True)
     if args[15]:
-        order_of_points(args[10][0],args[7])
+        order_of_points(args[10][0], args[7])
     if args[16] is not None:
-        mov_attack(args[16][0],args[16][1],args[16][2])
+        mov_attack(args[16][0], args[16][1], args[16][2])
     if args[17] is not None:
-        get_z_x_table(args[17][0],args[17][1])
+        get_z_x_table(args[17][0], args[17][1])
     if args[18]:
         get_bilininear_help()
+
 
 run()

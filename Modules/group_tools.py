@@ -3,7 +3,7 @@ def factorization(number):
     prime = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
     for pri in prime:
         fact_helper(number, pri, list_of_primes)
-    print(list_of_primes)
+    print("Number "+str(number)+" can be factorize to: "+str(list_of_primes))
     return list_of_primes
 
 
@@ -14,18 +14,20 @@ def fact_helper(number, prime, list_of_primes):
         fact_helper(number, prime, list_of_primes)
 
 
-def gcd(x, y):
+def gcd(x, y,regime):
     if y == 0:
+        if regime:
+            print("GCD is "+str(x))
         return x
     else:
-        return gcd(y, x % y)
+        return gcd(y, x % y,regime)
 
 
 def find_inverse(num, mod, regime):
     for i in range(1, int(mod)):
         if (i * num) % mod == 1:
             if regime:
-                print(i)
+                print("Inverse of number "+str(num)+" is "+str(i))
             return i
 
 
@@ -54,17 +56,17 @@ def crt(list_of_x_and_mods):
 def phi(number, regime):
     num = 0
     for i in range(1, number):
-        if gcd(number, i) == 1:
+        if gcd(number, i, False) == 1:
             num += 1
     if regime:
-        print(num)
+        print("Euler function of number "+str(number)+" is "+str(num))
     return num
 
 
 def find_group_mult(number, regime):
     list_of_group = []
     for i in range(1, number):
-        if gcd(number, i) == 1:
+        if gcd(number, i,False) == 1:
             list_of_group.append(i)
     if regime:
         print("Group is: " + str(list_of_group))
