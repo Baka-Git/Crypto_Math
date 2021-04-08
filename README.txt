@@ -43,10 +43,10 @@ x ≡ Y3 mod MODULUS3
 -solve CTR for given equations
 Format: -c Y1modMODULUS1,Y2modMODULUS2,...
 Example: -c 5mod7,3mod5
-Output:"    ´´´M: 35
+Output:"    M: 35
             N: [5.0, 7.0]
             L: [3, 3]
-            x = 33.0    "´´´
+            x = 33.0    "
 Inverse number
 -find inverse number for given number in Multiplicative Group
 Format: -i NUMBER,MODULUS
