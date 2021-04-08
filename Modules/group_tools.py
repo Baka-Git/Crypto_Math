@@ -32,7 +32,7 @@ def find_inverse(num, mod, regime):
 
 
 def crt(list_of_x_and_mods):
-    print(list_of_x_and_mods)
+    #print(list_of_x_and_mods)
     m = 1
     for mod in list_of_x_and_mods:
         m *= mod[1]

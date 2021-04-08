@@ -5,6 +5,7 @@ from Modules.elipctic_curve_tools import *
 
 def run():
     args = parse()
+    #print(args)
     if args is False:
         print("Wrong arguments were given!")
         return False
@@ -24,7 +25,7 @@ def run():
         find_group_orders(args[6], True)
     # [0-gcd, 1-factor, 2-crt, 3-inverse, 4-phi, 5-group, 6-orders_of_group, 7-curve, 8-p_point, 9-q_point, 10-field,
     # 11-point_on_curve, 12-order_of_ec, 13-add_points_ec, 14-order_of_the_one_point, 15-order_of_all_points,
-    # 16-mov_attack, 17-get_z_x_table ]
+    # 16-mov_attack, 17-get_z_x_table, 18-help_bilinear, 19-possible_orders ]
     # only control if curve is elliptic, ban 11-point_on_curve, 12-order_of_ec, 13-add_points_ec
     if args[7] is not None and (args[11] is False and args[12] is False and args[13] is False):
         is_elliptic(args[7], True)
@@ -47,6 +48,7 @@ def run():
         get_z_x_table(args[17][0], args[17][1])
     if args[18]:
         get_bilininear_help()
-
+    if args[19] is not None:
+        possible_orders(args[19])
 
 run()

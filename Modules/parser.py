@@ -50,13 +50,13 @@ def parse():
     parser.add_argument("--order_of_all_points",
                         help="Function for getting all orders of point on given EC. Format: --order_of_the_one_point. EC + Field must be given! Example: ' --curve 1,0,0,1,0,-1,1 --field 5 --order_of_all_point'", action="store_true")
     parser.add_argument("--possible_orders",
-                        help="Function for finding all possible orders, if field is changed. Format --possible_orders ORDER_OF_CURVE,NEW_FIELD. Example: '--possible_orders 5,15'")
+                        help="Function for finding out possible order of points, if only order of EC (Elliptic curve) is known and also function for finding out possible orders of points, if order of EC is change to given value Formats: --possible_orders OLD_ORDER,NEW_ORDER In case we DO NOT change order of EC format is: --possible_orders ORDER. Example: '--possible_orders 5,15'")
     parser.add_argument("--mov_attack",
-                        help="Function for finding out secret by MOV Attack. Format --mov_attack SECRET,GENERATOR,ORDER. Example: '--mov_attack 5,2,11'")
+                        help="Function for finding out secret by MOV Attack. Format --mov_attack SECRET,GENERATOR,ORDER. Example: '--mov_attack 5,2,10'")
     parser.add_argument("--get_z_x_table",
                         help="Function for generating help table of Zx. Format --get_z_x_table GENERATOR,MODULUS. Example: '--get_z_x_table 2,5'")
     parser.add_argument("--help_bilinear",
-                        help="Function for printing help table for bilinear operations! Example: '-help_bilinear'",
+                        help="Function for printing help table for bilinear operations! Example: '--help_bilinear'",
                         action="store_true")
     args = parser.parse_args()
     # print(args)
@@ -146,10 +146,15 @@ def control(args):
         if get_z_x_table is False or len(get_z_x_table) != 2:
             return False
     help_bilinear = args.help_bilinear
-
+    possible_orders=args.possible_orders
+    if possible_orders is not None:
+        possible_orders=get_ints(possible_orders)
+        if possible_orders is False:
+            print("Wrong arguments!")
+            return False
     return [gcd, factor, crt, inverse, phi, group, orders_of_group, curve, p_point, q_point, field, point_on_curve,
             order_of_ec, add_points_ec, order_of_the_one_point, order_of_all_points, mov_attack, get_z_x_table,
-            help_bilinear]
+            help_bilinear, possible_orders]
 
 
 def get_ints(args):

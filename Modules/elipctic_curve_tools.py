@@ -20,7 +20,8 @@ def is_elliptic(curve, regime):
             if curve[point] < 0:
                 help_curve[point] = abs(curve[point])
                 operation[point] = " - "
-        print("Given curve is elliptic.\nElliptic curve: y^2" + operation[1] + str(help_curve[1]) + " * y" + operation[2] + str(
+        print("Given curve is elliptic.\nElliptic curve: y^2" + operation[1] + str(help_curve[1]) + " * y" + operation[
+            2] + str(
             help_curve[2]) + " * xy = x^3" + operation[4] + str(help_curve[4]) + " * x^2" + operation[5] + str(
             help_curve[5]) + " * x" + operation[6] + str(help_curve[6]))
     return curve
@@ -75,7 +76,9 @@ def order_of_ec(f, curve, regime):
     for line in line_points:
 
         if regime:
-            print(same_size(line[0],4)+same_size(line[1],8)+same_size(line[2],5)+same_size(line[3],5)+same_size(line[4],20))
+            print(same_size(line[0], 4) + same_size(line[1], 8) + same_size(line[2], 5) + same_size(line[3],
+                                                                                                    5) + same_size(
+                line[4], 20))
         if line[4] == "[∞,∞]":
             list_of_point.append(line[4])
             order += 1
@@ -177,11 +180,20 @@ def order_of_points(f, curve):
                 break
     print("Orders    | Points")
     for line in list_of_point_orders:
-        print(same_size(line[0],10)+" "+str(line[1:]))
+        print(same_size(line[0], 10) + " " + str(line[1:]))
     return list_of_point_orders
 
 
-def possible_orders(order_of_curve, new_field):
+def possible_orders(orders):
+    if len(orders) == 2:
+        order_of_curve = orders[0]
+        new_field = orders[1]
+    elif len(orders) == 1:
+        order_of_curve = orders[0]
+        new_field = orders[0]
+    else:
+        print("Wrong arguments!")
+        return False
     possible_orders_old = divisors(order_of_curve)
     possible_orders_field = divisors(new_field)
     possible_orders_new = []
@@ -189,7 +201,7 @@ def possible_orders(order_of_curve, new_field):
         for order_field in possible_orders_field:
             if order_old == order_field:
                 possible_orders_new.append(order_field)
-    print(possible_orders_new)
+    print("Possible orders are: " + str(possible_orders_new))
     return possible_orders_new
 
 
@@ -199,6 +211,7 @@ def mov_attack(secret, g, order):
         if a == secret:
             print("Secret is: " + str(i))
             return i
+    print("There is not secret!")
     return True
 
 
@@ -234,6 +247,7 @@ def get_bilininear_help():
           "e(P; P) = 1")
     return True
 
+
 def same_size(info, size):
     string_info = " " + str(info)
     while len(string_info) < size:
@@ -249,5 +263,5 @@ def same_size(info, size):
 # print(possible_orders(36, 22))
 # mov_attack(13,6,16)
 # get_z_x_table(2, 5)
-#get_bilininear_help()
-#order_of_point([0,1],7,[1,-1,2,1,-5,3,2],True)
+# get_bilininear_help()
+# order_of_point([0,1],7,[1,-1,2,1,-5,3,2],True)
