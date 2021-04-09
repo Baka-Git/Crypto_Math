@@ -20,51 +20,70 @@ What can Crypto_Math do:
 + compute secret of EC Diffie-Hellman by doing MOV Attack
 + get help table for Bilinear operations
 
-USE
+# USE
 Program should be run from terminal by command: python3 main.py ARGUMENTS
 
-GCD (Greatest Common Divisor)
+## GCD (Greatest Common Divisor)
+
 -find Greatest Common Divisor of two given numbers
+```
 Format: -g NUMBER_X,NUMBER_Y
 Example: -g 15,3
 Output: "GCD is 3"
+```
 
-Factorization
+## Factorization
+
 -factorized given number
+```
 Format: -f NUMBER
 Example: -f 15
 Output: "Number 15 can be factorize to: [3, 5]"
+```
 
-Chinese Remainder Theorem (CTR)
+## Chinese Remainder Theorem (CTR)
 x ≡ Y1 mod MODULUS1
 x ≡ Y2 mod MODULUS2
 x ≡ Y3 mod MODULUS3
-...
+
 -solve CTR for given equations
+```
 Format: -c Y1modMODULUS1,Y2modMODULUS2,...
 Example: -c 5mod7,3mod5
 Output:"    M: 35
             N: [5.0, 7.0]
             L: [3, 3]
             x = 33.0    "
-Inverse number
+```
+
+## Inverse number
+
 -find inverse number for given number in Multiplicative Group
+```
 Format: -i NUMBER,MODULUS
 Example: -i 5,11
 Output:"Inverse of number 5 is 9"
+```
 
-Phi (Euler number)
+## Phi (Euler number)
+
 -compute Euler number for given number
+```
 Format: -p NUMBER
 Example: -p 11
 Output:"Euler function of number 11 is 10"
+```
 
-Multiplicative group
+## Multiplicative group
+
 -find multiplicative group for given number
+```
 Format: --group NUMBER
 Example: --group 11
 Output:"Group is: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+```
 -find orders for multiplicative group for given number
+```
 Format: --orders_of_group NUMBER
 Example: --orders_of_group 11
 Output:"    Group is: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -72,33 +91,46 @@ Output:"    Group is: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
             [10] have order 2
             [3, 4, 5, 9] have order 5
             [2, 6, 7, 8] have order 10 -> GENERATORS!   "
+```
 
-Curve
+# Elliptic Curves
+
 -give information about curve to the program. If no other function is used, program check if given curve is elliptic or not
+
 Example of format for equation of curve: A0* y^2 + A1 * y + A2 * y * x = A3 * x^3 + A4 * x^2 + A5 * x + A6
+
 WARNING!!! If A0 is negative, for example -1, write instead of symbol "-" symbol"/". Example: -1 -> /1
+```
 Format: --curve A0,A1,A2,A3,A4,A5,A6
 Example: Curve is y^2 = x^3 + 2* x + 1 -> 1* y^2 + 0 * y + 0 * y * x = 1 * x^3 + 0 * x^2 + 2 * x + 1
         --curve 1,0,0,1,0,1,1
 Output:"Elliptic curve: y^2 + 0 * y + 0 * xy = x^3 + 0 * x^2 + 1 * x + 1"
+```
 
-P_point and Q_point
+## P_point and Q_point
 -help parameter for giving program information about P (Q) point. If only P_point (Q_point) is given, no function will happen!
+
 WARNING!!! If X is negative, for example -1, write instead of symbol "-" symbol"/". Example: -1 -> /1
+```
 Format: --p_point X,Y
 Example:    P is [-1,-2] then write: --p_point /1,-2
             Q is [1,2] then write: --q_point 1,2Example
 Output: NO OUTPUT!
+```
 
-Field
+## Field
+
 -help parameter for giving program information about field. If only field is given, no function will happen!
+```
 Format: --field FIELD
 Example: --field 5
 Output: NO OUTPUT!
+```
+## Order of Elliptic curve
 
-Order of Elliptic curve
 -function to find order for given Elliptic curve
 MUST GIVEN PARAMETER!!!: curve, field
+```
 Format: --curve A0,A1,A2,A3,A4,A5,A6 --field FIELD --order_of_ec
 Example: --curve 1,0,0,1,0,-1,-1  --field 7 --order_of_ec
 Output:"    Given curve is elliptic.
@@ -113,33 +145,44 @@ Output:"    Given curve is elliptic.
              6  | 6      | -   | -   | -                  |
              ∞  | -      | -   | ∞   | [∞,∞]              |
             Order of E[F7] is: 4    "
+```
 
-Check point on elliptic curve
+## Check point on elliptic curve
+```
 -find if given point is on given curve or not
 MUST GIVEN PARAMETER!!!: p_point, curve, field
 Format: --p_point X,Y --curve A0,A1,A2,A3,A4,A5,A6 --field FIELD --point_on_curve
 Example: --p_point 0,1 --field 7 --curve 1,0,0,1,0,2,1 --point_on_curve
 Output:"Point (0,1) is on elliptic curve!"
+```
 
-Adding points on EC
+## Adding points on EC
+
 -function for adding two given points (P,Q) on given elliptic curve
+
 MUST GIVEN PARAMETER!!!: p_point, q_point,curve, field
+```
 Format: --p_point Xp,Yp --q_point Xq,Yq --curve A0,A1,A2,A3,A4,A5,A6 --field FIELD --point_on_curve
 Example: --p_point 1,2 --q_point 0,1 --field 7 --curve 1,0,0,1,0,2,1 --add_points_ec
 Output:"P =  [1, 2], Q =  [0, 1], R = P + Q =  [0, 6]"
+```
 
-Order of point on EC
+## Order of point on EC
 -function for finding order for one given point
+
 MUST GIVEN PARAMETER!!!: p_point, curve, field
+```
 Format: --p_point X,Y --curve A0,A1,A2,A3,A4,A5,A6 --field FIELD --order_of_the_one_point
 Example: --p_point 4,1 --curve 1,0,0,1,0,-1,1 --field 5 --order_of_the_one_point
 Output:"    Given curve is elliptic.
             Elliptic curve: y^2 + 0 * y + 0 * xy = x^3 + 0 * x^2 - 1 * x + 1
             Order is: 4 "
+```
 
-Order of all points on EC
+## Order of all points on EC
 -function for finding orders for all points for given curve
 MUST GIVEN PARAMETER!!!: curve, field
+```
 Format: --curve A0,A1,A2,A3,A4,A5,A6 --field FIELD --order_of_the_one_point
 Example: --curve 1,0,0,1,0,-1,1 --field 5 --order_of_all_point
 Output:"    Given curve is elliptic.
@@ -151,25 +194,31 @@ Output:"    Given curve is elliptic.
              2        | [[3, 0]]
              4        | [[4, 1], [4, -1]]
              8        | [[0, 1], [0, -1], [1, 1], [1, -1]]  "
+```
 
-MOV Attack
+## MOV Attack
 -provide MOV Attack on EC Diffie-Hellman
 -need SECRET = E[P,aP], GENERATOR = E[P,P] and ORDER = order of EC
 -output is secret value of a
+```
 Format: --mov_attack SECRET,GENERATOR,ORDER
 Example: Known parameters: E[P,aP] = 5, E[P,P] = 2, order of EC is 10 --> write: --mov_attack 5,2,10
 Output:"Secret is: 4"
+```
 
-Possible orders of EC
+## Possible orders of EC
 -function for finding out possible order of points, if only order of EC (Elliptic curve) is known
 -also function for finding out possible orders of points, if order of EC is change to given value
+```
 Formats: --possible_orders OLD_ORDER,NEW_ORDER
 -in case we DO NOT change order of EC format is: --possible_orders ORDER
 Example: --possible_orders 5,15
 Output:"Possible orders are: [1, 5]"
+```
 
-Bilinear operations
+## Bilinear operations
 -function for getting overview of all bilinear operations
+```
 Format: --help_bilinear
 Example: --help_bilinear
 Output:"    e(P; O) = e(O; Q) = 1
@@ -189,12 +238,16 @@ Output:"    e(P; O) = e(O; Q) = 1
             e(P; Q) = e(Q; P)^(-1)
 
             e(P; P) = 1 "
+```
 
 Z_x table
+
 -function for generating help table of Z_x, which can be used for EC Diffie-Hellman.
+```
 Format: --get_z_x_table GENERATOR,MODULUS
 Example: --get_z_x_table 2,5
 Output:"    [1, 1, 1, 1]
             [1, 2, 4, 3]
             [1, 4, 1, 4]
             [1, 3, 4, 2]    "
+```
