@@ -34,14 +34,14 @@ def run():
         is_point_on_elliptic_curve(args[8][0], args[8][1], args[10][0], args[7], True, False)
     # get order of EC
     if args[12]:
-        order_of_ec(args[10][0], args[7], True)
+        order_of_ec(args[10][0], args[7], True, False)
     # adds points
     if args[13]:
         add_point([args[8][0], args[8][1]], [args[9][0], args[9][1]], args[10][0], args[7], True)
     if args[14]:
         order_of_point(args[8], args[10][0], args[7], True)
     if args[15]:
-        order_of_points(args[10][0], args[7])
+        order_of_points(args[10][0], args[7], False)
     if args[16] is not None:
         mov_attack(args[16][0], args[16][1], args[16][2])
     if args[17] is not None:

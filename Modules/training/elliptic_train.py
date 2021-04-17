@@ -1,18 +1,20 @@
 import random
 
 from elliptic_curve_tools import *
+
+
 def choose_train_elliptic():
 	# TODO mov attack training
+	# TODO add_points = the problem is reliably generating points that belong to the curve
 
 	training_types = [
 		'is_elliptic',
 		'is_point',
 		'possible_point_orders',
 		'curve_order',
-		'add_points',
 	]	
 
-	weights = ( 1, 2, 3, 4, 5 )
+	weights = ( 1, 2, 3, 4 )
 
 	random_training = random.choices(
 			training_types,
@@ -23,6 +25,7 @@ def choose_train_elliptic():
 	return random_training
 
 
+
 def check_yes_no(user_answer, answer):
 	if user_answer == 'Y' and answer:
 		print('Correct!\n')
@@ -31,11 +34,15 @@ def check_yes_no(user_answer, answer):
 	else:
 		print('Incorrect!\n')
 
+
+
 def check_answer(user_answer, answer):
 	if user_answer == answer:
 		print('Correct!\n')
 	else:
 		print(f'Incorrect! The correct answer is {answer}\n')
+
+
 
 def elliptic_trainer():
 
@@ -68,6 +75,21 @@ def elliptic_trainer():
 			user_answer = input('What are the possible orders of an EC of the given order? ')
 
 			check_answer(user_answer, answer)
+
+		if training == 'curve_order':
+			answer, curve, field = check_curve_order()
+
+			print(f'Field: F{field}')
+			print('Input the number only!\n')
+			user_answer = input('What is the order of the given curve, considering the provided field?  ')
+
+			check = check_answer(user_answer, str(answer[0]))
+
+			if not check:
+				print(f'\nThis is how we got the answer: ')
+				order_of_ec(field, curve, True, False)
+				print()
+
 
 
 def gen_field():
@@ -162,3 +184,24 @@ def check_possible_point_orders():
 	check = str(check)[1:-1]
 
 	return check
+
+
+
+def check_curve_order():
+	field = gen_field()
+
+	random_numbers = []
+
+	for i in range(7):
+		value = random.randint(0,20)
+		random_numbers.append(value)
+
+	random_numbers[0] = 1
+	random_numbers[3] = 1
+	random_numbers[2] = 0
+
+
+	# answer = [order,list_of_points]
+	answer = order_of_ec(field, random_numbers, True, True)
+
+	return answer, random_numbers, field
