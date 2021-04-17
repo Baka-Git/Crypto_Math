@@ -1,4 +1,4 @@
-# from Modules.group_tools import *
+#from Modules.group_tools import *
 from group_tools import *
 
 def copy_curve(curve):
@@ -153,8 +153,8 @@ def add_point(point_p, point_q, f, curve, regime):
 
 def divisors(number):
     list_of_divisors = []
-    for num in range(1, number + 1):
-        if number % num == 0:
+    for num in range(1, int(number) + 1):
+        if int(number) % num == 0:
             list_of_divisors.append(num)
     return list_of_divisors
 
@@ -196,7 +196,7 @@ def order_of_points(f, curve):
     return list_of_point_orders
 
 
-def possible_orders(orders):
+def possible_orders(orders, silent):
     if len(orders) == 2:
         order_of_curve = orders[0]
         new_field = orders[1]
@@ -206,14 +206,19 @@ def possible_orders(orders):
     else:
         print("Wrong arguments!")
         return False
+    
     possible_orders_old = divisors(order_of_curve)
     possible_orders_field = divisors(new_field)
     possible_orders_new = []
+    
     for order_old in possible_orders_old:
         for order_field in possible_orders_field:
             if order_old == order_field:
                 possible_orders_new.append(order_field)
-    print("Possible orders are: " + str(possible_orders_new))
+    
+    if not silent: 
+        print("Possible orders are: " + str(possible_orders_new))
+
     return possible_orders_new
 
 

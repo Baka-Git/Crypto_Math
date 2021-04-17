@@ -1,19 +1,15 @@
 import random
 
 from elliptic_curve_tools import *
-
 def choose_train_elliptic():
 	# TODO mov attack training
 
 	training_types = [
 		'is_elliptic',
 		'is_point',
-		'is_elliptic',
-		'is_point',
-		'is_point',
-		#'possible_orders',
-		#'curve_order',
-		#'add_points',
+		'possible_point_orders',
+		'curve_order',
+		'add_points',
 	]	
 
 	weights = ( 1, 2, 3, 4, 5 )
@@ -27,7 +23,7 @@ def choose_train_elliptic():
 	return random_training
 
 
-def check_answer(user_answer, answer):
+def check_yes_no(user_answer, answer):
 	if user_answer == 'Y' and answer:
 		print('Correct!\n')
 	elif user_answer == 'N' and not answer:
@@ -35,7 +31,11 @@ def check_answer(user_answer, answer):
 	else:
 		print('Incorrect!\n')
 
-
+def check_answer(user_answer, answer):
+	if user_answer == answer:
+		print('Correct!\n')
+	else:
+		print(f'Incorrect! The correct answer is {answer}\n')
 
 def elliptic_trainer():
 
@@ -50,7 +50,7 @@ def elliptic_trainer():
 			while user_answer != 'Y' and user_answer != 'N':
 				user_answer = input('Is the curve elliptic? Y/N: ')
 
-			check_answer(user_answer, answer)
+			check_yes_no(user_answer, answer)
 
 		if training == 'is_point':
 			answer = check_point()
@@ -59,7 +59,16 @@ def elliptic_trainer():
 			while user_answer != 'Y' and user_answer != 'N':
 				user_answer = input('Does the point P belong on the given curve? Y/N: ')
 
-			check_answer(user_answer, answer)			
+			check_yes_no(user_answer, answer)	
+
+		if training == 'possible_point_orders':
+			answer = check_possible_point_orders()
+
+			print('Answer format: a, b, c, ..., z!! One spaces between commas!!\n')
+			user_answer = input('What are the possible orders of an EC of the given order? ')
+
+			check_answer(user_answer, answer)
+
 
 def gen_field():
 	prime = [2, 3, 5]
@@ -73,6 +82,8 @@ def gen_field():
 				)[0]
 
 	return prime_number ** random.randint(1,3)
+
+
 
 def check_curve():
 	will_be_elliptic = random.choice([True,False]) 
@@ -135,5 +146,19 @@ def check_point():
 	print(f"Field: F{field}")
 
 	check = is_point_on_elliptic_curve(point[0], point[1], field, random_numbers, True, True)
+
+	return check
+
+
+
+def check_possible_point_orders():
+	order = random.randint(0,99)
+
+	print(f'EC of order {order}')
+
+	check = possible_orders(str(order), True)
+
+	# remove the brackets
+	check = str(check)[1:-1]
 
 	return check

@@ -5,7 +5,7 @@ from training.elliptic_train import elliptic_trainer
 
 def interactive():
 
-	print(f'Running elliptic training')
+	print(f'Running elliptic training\n')
 
 	quit = False
 

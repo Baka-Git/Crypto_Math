@@ -49,6 +49,6 @@ def run():
     if args[18]:
         get_bilininear_help()
     if args[19] is not None:
-        possible_orders(args[19])
+        possible_orders(args[19], False)
 
 run()
