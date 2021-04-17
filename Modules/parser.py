@@ -70,88 +70,125 @@ def control(args):
         gcd = get_ints(args.gcd)
         if gcd is False:
             return False
+    
+
     factor = args.factorization
     if factor is not None:
         factor = get_ints(factor)
         if factor is False:
             return False
+    
+
     crt = args.crt
     if crt is not None:
         crt = get_crt_info(crt)
         if crt is False:
             return False
+    
+
     inverse = args.inverse
     if inverse is not None:
         inverse = get_ints(inverse)
         if inverse is False:
             return False
+    
+
     phi = args.phi
     if phi is not None:
         phi = get_int(phi)
         if phi is False:
             return False
+    
+
     group = args.group
     if group is not None:
         group = get_int(group)
         if group is False:
             return False
+    
+
     orders_of_group = args.orders_of_group
     if orders_of_group is not None:
         orders_of_group = get_int(orders_of_group)
         if orders_of_group is False:
             return False
+    
+
     curve = args.curve
     if curve is not None:
         curve = get_ints(curve)
         if curve is False or len(curve) != 7:
             return False
+    
+
     p_point = args.p_point
     if p_point is not None:
         p_point = get_ints(p_point)
         if p_point is False or curve is None:
             return False
+    
+    
     q_point = args.q_point
     if q_point is not None:
         q_point = get_ints(q_point)
         if q_point is False or curve is None:
             return False
+    
+    
     field = args.field
     if field is not None:
         field = get_ints(field)
         if field is False or curve is None:
             return False
+    
+    
     point_on_curve = args.point_on_curve
     if point_on_curve and p_point is None:
         return False
+    
+    
     order_of_ec = args.order_of_ec
     if order_of_ec and field is None:
         return False
+    
+    
     add_points_ec = args.add_points_ec
     if add_points_ec and (p_point is None or q_point is None):
         return False
+    
+    
     order_of_the_one_point = args.order_of_the_one_point
     if order_of_the_one_point and (p_point is None or field is None):
         return False
+    
+
     order_of_all_points = args.order_of_all_points
     if order_of_all_points and (curve is None or field is None):
         return False
+    
+
     mov_attack = args.mov_attack
     if mov_attack is not None:
         mov_attack = get_ints(mov_attack)
         if mov_attack is False or len(mov_attack) != 3:
             return False
+    
     get_z_x_table = args.get_z_x_table
+    
     if get_z_x_table is not None:
         get_z_x_table = get_ints(get_z_x_table)
         if get_z_x_table is False or len(get_z_x_table) != 2:
             return False
+    
     help_bilinear = args.help_bilinear
     possible_orders=args.possible_orders
+    
     if possible_orders is not None:
         possible_orders=get_ints(possible_orders)
         if possible_orders is False:
             print("Wrong arguments!")
             return False
+
     return [gcd, factor, crt, inverse, phi, group, orders_of_group, curve, p_point, q_point, field, point_on_curve,
             order_of_ec, add_points_ec, order_of_the_one_point, order_of_all_points, mov_attack, get_z_x_table,
             help_bilinear, possible_orders]

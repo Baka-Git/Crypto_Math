@@ -1,11 +1,11 @@
 from Modules.parser import parse
 from Modules.group_tools import *
-from Modules.elipctic_curve_tools import *
+from Modules.elliptic_curve_tools import *
 
 
 def run():
     args = parse()
-    #print(args)
+
     if args is False:
         print("Wrong arguments were given!")
         return False
@@ -28,7 +28,7 @@ def run():
     # 16-mov_attack, 17-get_z_x_table, 18-help_bilinear, 19-possible_orders ]
     # only control if curve is elliptic, ban 11-point_on_curve, 12-order_of_ec, 13-add_points_ec
     if args[7] is not None and (args[11] is False and args[12] is False and args[13] is False):
-        is_elliptic(args[7], True)
+        is_elliptic(args[7], True, False)
     # only control if point is on EC curve, need Curve, Point, Field,
     if args[11]:
         is_point_on_elliptic_curve(args[8][0], args[8][1], args[10][0], args[7], True)

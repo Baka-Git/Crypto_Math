@@ -1,5 +1,5 @@
-from Modules.group_tools import *
-
+# from Modules.group_tools import *
+from group_tools import *
 
 def copy_curve(curve):
     help_curve = []
@@ -8,27 +8,34 @@ def copy_curve(curve):
     return help_curve
 
 
-def is_elliptic(curve, regime):
+def is_elliptic(curve, regime, silent):
     # curve - [y^2 y yx x^3 x^2 x^1 a]
     if curve[0] != 1 or curve[3] != 1:
-        print("Given curve is not elliptic!")
+        if not silent:
+            print("Given curve is not elliptic!")
         return False
+    
     if regime:
         help_curve = copy_curve(curve)
         operation = [" + ", " + ", " + ", " + ", " + ", " + ", " + "]
+       
         for point in range(0, len(curve)):
             if curve[point] < 0:
                 help_curve[point] = abs(curve[point])
                 operation[point] = " - "
-        print("Given curve is elliptic.\nElliptic curve: y^2" + operation[1] + str(help_curve[1]) + " * y" + operation[
-            2] + str(
-            help_curve[2]) + " * xy = x^3" + operation[4] + str(help_curve[4]) + " * x^2" + operation[5] + str(
-            help_curve[5]) + " * x" + operation[6] + str(help_curve[6]))
+        
+        if not silent:
+            print("Given curve is elliptic.\nElliptic curve: y^2" + operation[1] + str(help_curve[1]) + " * y" + operation[2]
+                 + str(help_curve[2]) + " * xy = x^3" + operation[4] + str(help_curve[4]) + " * x^2" + operation[5]
+                 + str(help_curve[5]) + " * x" + operation[6] + str(help_curve[6]))
+        else:
+            print(f" y^2 {operation[1]} {str(help_curve[1])} * y {operation[2]} {str(help_curve[2])} * xy =" +
+                  f" x^3 {operation[4]} {str(help_curve[4])} * x^2 {operation[5]} {str(help_curve[5])} * x {operation[6]} {str(help_curve[6])}")
     return curve
 
 
 def is_point_on_elliptic_curve(x, y, f, curve, regime):
-    if is_elliptic(curve, False) is False:
+    if is_elliptic(curve, False, False) is False:
         return False
     a = (y ** 2 + curve[1] * y + curve[2] * x * y) % f
     b = (x ** 3 + curve[4] * x ** 2 + curve[5] * x + curve[6]) % f
@@ -42,7 +49,7 @@ def is_point_on_elliptic_curve(x, y, f, curve, regime):
 
 
 def order_of_ec(f, curve, regime):
-    if is_elliptic(curve, True) is False:
+    if is_elliptic(curve, True, False) is False:
         print("Given Curve is not Elliptic!")
         return False
     if curve[2] != 0:
