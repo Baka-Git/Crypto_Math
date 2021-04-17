@@ -240,7 +240,7 @@ Output:"    e(P; O) = e(O; Q) = 1
             e(P; P) = 1 "
 ```
 
-## Z_x table
+Z_x table
 
 -function for generating help table of Z_x, which can be used for EC Diffie-Hellman.
 ```
