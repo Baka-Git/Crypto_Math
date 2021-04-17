@@ -1,5 +1,5 @@
-#from Modules.group_tools import *
-from group_tools import *
+from Modules.group_tools import *
+
 
 def copy_curve(curve):
     help_curve = []

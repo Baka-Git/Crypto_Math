@@ -1,6 +1,6 @@
 import random
 
-from training.elliptic_train import elliptic_trainer
+from Modules.training.elliptic_train import elliptic_trainer
 
 
 def interactive():
@@ -20,6 +20,3 @@ def interactive():
 
 		if go_on == 'N':
 			quit = True
-
-
-interactive()

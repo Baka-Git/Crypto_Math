@@ -1,6 +1,6 @@
 import random
 
-from elliptic_curve_tools import *
+from Modules.elliptic_curve_tools import *
 
 
 def choose_train_elliptic():

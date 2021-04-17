@@ -1,6 +1,7 @@
 from Modules.parser import parse
 from Modules.group_tools import *
 from Modules.elliptic_curve_tools import *
+from Modules.train import interactive
 
 
 def run():
@@ -50,5 +51,7 @@ def run():
         get_bilininear_help()
     if args[19] is not None:
         possible_orders(args[19], False)
+    if args[20]:
+        interactive()
 
 run()
