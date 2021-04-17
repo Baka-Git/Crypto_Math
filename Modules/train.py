@@ -1,6 +1,6 @@
 import random
 
-from Modules.training.elliptic_train import elliptic_trainer
+from training.elliptic_train import elliptic_trainer
 
 
 def interactive():
@@ -22,3 +22,4 @@ def interactive():
 			quit = True
 
 
+interactive()

@@ -31,7 +31,7 @@ def run():
         is_elliptic(args[7], True, False)
     # only control if point is on EC curve, need Curve, Point, Field,
     if args[11]:
-        is_point_on_elliptic_curve(args[8][0], args[8][1], args[10][0], args[7], True)
+        is_point_on_elliptic_curve(args[8][0], args[8][1], args[10][0], args[7], True, False)
     # get order of EC
     if args[12]:
         order_of_ec(args[10][0], args[7], True)

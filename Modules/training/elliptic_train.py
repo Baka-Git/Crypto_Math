@@ -8,9 +8,12 @@ def choose_train_elliptic():
 	training_types = [
 		'is_elliptic',
 		'is_point',
-		'possible_orders',
-		'curve_order',
-		'add_points',
+		'is_elliptic',
+		'is_point',
+		'is_point',
+		#'possible_orders',
+		#'curve_order',
+		#'add_points',
 	]	
 
 	weights = ( 1, 2, 3, 4, 5 )
@@ -49,6 +52,27 @@ def elliptic_trainer():
 
 			check_answer(user_answer, answer)
 
+		if training == 'is_point':
+			answer = check_point()
+
+			user_answer = input('Does the point P belong on the given curve? Y/N: ')
+			while user_answer != 'Y' and user_answer != 'N':
+				user_answer = input('Does the point P belong on the given curve? Y/N: ')
+
+			check_answer(user_answer, answer)			
+
+def gen_field():
+	prime = [2, 3, 5]
+
+	weights = ( 6, 5, 4) 
+
+	prime_number = random.choices(
+					prime,
+					weights=weights,
+					k=1
+				)[0]
+
+	return prime_number ** random.randint(1,3)
 
 def check_curve():
 	will_be_elliptic = random.choice([True,False]) 
@@ -85,5 +109,31 @@ def check_curve():
 
 	if check != False:
 		check = True
+
+	return check
+
+
+
+def check_point():
+	random_numbers = []
+
+	for i in range(7):
+		value = random.randint(0,20)
+		random_numbers.append(value)
+
+	random_numbers[0] = 1
+	random_numbers[3] = 1
+
+	field = gen_field()
+
+	point = [ random.randint(0,20), random.randint(0,20) ] 
+
+	print(f"y^2 + {str(random_numbers[1])} * y + {str(random_numbers[2])} * xy = " +
+      f"x^3 + {str(random_numbers[4])} * x^2 + {str(random_numbers[5])} * x + {str(random_numbers[6])}")
+
+	print(f"P({point[0]},{point[1]})")
+	print(f"Field: F{field}")
+
+	check = is_point_on_elliptic_curve(point[0], point[1], field, random_numbers, True, True)
 
 	return check

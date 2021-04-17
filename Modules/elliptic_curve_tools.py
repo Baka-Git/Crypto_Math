@@ -34,16 +34,21 @@ def is_elliptic(curve, regime, silent):
     return curve
 
 
-def is_point_on_elliptic_curve(x, y, f, curve, regime):
+def is_point_on_elliptic_curve(x, y, f, curve, regime, silent):
     if is_elliptic(curve, False, False) is False:
         return False
+    
     a = (y ** 2 + curve[1] * y + curve[2] * x * y) % f
     b = (x ** 3 + curve[4] * x ** 2 + curve[5] * x + curve[6]) % f
+    
     if (y ** 2 + curve[1] * y + curve[2] * x * y) % f == (x ** 3 + curve[4] * x ** 2 + curve[5] * x + curve[6]) % f:
         if regime:
-            print("Point (" + str(x) + "," + str(y) + ") is on elliptic curve!")
+            if not silent:
+                print("Point (" + str(x) + "," + str(y) + ") is on elliptic curve!")
         return True
-    print("Point (" + str(x) + "," + str(y) + ") is not on elliptic curve!")
+    
+    if not silent:
+        print("Point (" + str(x) + "," + str(y) + ") is not on elliptic curve!")
     return False
     # curve - [y^2 y yx x^3 x^2 x^1 a]
 
@@ -121,10 +126,10 @@ def find_point(x, x_side, y_2_points, f):
 def add_point(point_p, point_q, f, curve, regime):
     point_p = [point_p[0] % f, point_p[1] % f]
     point_q = [point_q[0] % f, point_q[1] % f]
-    if not (is_point_on_elliptic_curve(point_p[0], point_p[1], f, curve, False) and is_point_on_elliptic_curve(
+    if not (is_point_on_elliptic_curve(point_p[0], point_p[1], f, curve, False, False) and is_point_on_elliptic_curve(
             point_q[0]
             , point_q[1], f
-            , curve, False)):
+            , curve, False, False)):
         print("One or Two points, which were given, are not on E[F " + str(f) + "].")
         return False
     if point_p[0] != point_q[0]:
