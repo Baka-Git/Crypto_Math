@@ -183,7 +183,7 @@ Output:"    Given curve is elliptic.
 -function for finding orders for all points for given curve
 MUST GIVEN PARAMETER!!!: curve, field
 ```
-Format: --curve A0,A1,A2,A3,A4,A5,A6 --field FIELD --order_of_the_one_point
+Format: --curve A0,A1,A2,A3,A4,A5,A6 --field FIELD --order_of_all_point
 Example: --curve 1,0,0,1,0,-1,1 --field 5 --order_of_all_point
 Output:"    Given curve is elliptic.
             Elliptic curve: y^2 + 0 * y + 0 * xy = x^3 + 0 * x^2 - 1 * x + 1
@@ -240,7 +240,7 @@ Output:"    e(P; O) = e(O; Q) = 1
             e(P; P) = 1 "
 ```
 
-## Z_x table
+Z_x table
 
 -function for generating help table of Z_x, which can be used for EC Diffie-Hellman.
 ```
