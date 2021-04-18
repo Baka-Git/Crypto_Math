@@ -156,7 +156,11 @@ def add_point(point_p, point_q, f, curve, regime):
         b = find_inverse(point_q[0] - point_p[0], f, False)
     
         lambdas = a * b % f
+<<<<<<< Updated upstream:Modules/elliptic_curve_tools.py
     
+=======
+        print("Lambda is: "+str(lambdas))
+>>>>>>> Stashed changes:Modules/elipctic_curve_tools.py
         x_r = (lambdas ** 2 - point_q[0] - point_p[0]) % f
         r = [x_r, (lambdas * (point_p[0] - x_r) - point_p[1]) % f]
 
