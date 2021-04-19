@@ -240,7 +240,7 @@ Output:"    e(P; O) = e(O; Q) = 1
             e(P; P) = 1 "
 ```
 
-Z_x table
+## Z_x table
 
 -function for generating help table of Z_x, which can be used for EC Diffie-Hellman.
 ```
@@ -251,3 +251,20 @@ Output:"    [1, 1, 1, 1]
             [1, 4, 1, 4]
             [1, 3, 4, 2]    "
 ```
+
+# The training module
+
+## tests
+-function to practice some elliptic curve calculations 
+```
+Format: --tests
+```
+What happens?
++ Begin a semi-interactive terminal 
++ Answer 10 questions, then decide if you wish to continue
+
+What types of questions are there?
++ Is a curve elliptic? Yes/No
++ Does this point belong on the curve? Yes/No
++ What are the possible orders of points for a curve? Num1, Num2, ..., NumX
++ What is the order of this curve? Num
