@@ -19,7 +19,8 @@ What can Crypto_Math do:
 + find orders of all points of Elliptic Curve
 + compute secret of EC Diffie-Hellman by doing MOV Attack
 + get help table for Bilinear operations
-
++ compute Linear Congruential Generator
++ demonstrate One-bit Commitment
 # USE
 Program should be run from terminal by command: python3 main.py ARGUMENTS
 
@@ -301,10 +302,10 @@ Alice                                   Bob
         System parameter: p is Prime number
                           G(s) is LCG function with a, c parameters
 
-                                        Bob compute r and send it to Alice
+                                        Bob computes r and send it to Alice
         <-------------(r)--------------
-Alice choose seed s
-Alice choose commitment value b [bit]
+Alice chooses seed s
+Alice chooses commitment value b [bit]
 If b is 0 secret C is computed by formula
         c= G(s) mod 2
 Else:
@@ -312,10 +313,10 @@ Else:
 Alice sends Bob secret c
         ---------------(c)------------>
 ...
-Alice send Bob opening (b,s)
+Alice sends Bob opening (b,s)
         --------------(b,s)----------->
-                                        Bob compute c' from opening values 
-                                        and compere it with c
+                                        Bob computes c' from opening values 
+                                        and comperes it with c
 ```
 - function **REQUIRE** enabling of **lcg** and **r_value** functions
 ```
