@@ -2,6 +2,7 @@ from Modules.parser import parse
 from Modules.group_tools import *
 from Modules.elliptic_curve_tools import *
 from Modules.train import interactive
+from Modules.commitments_tools import *
 
 
 def run():
@@ -53,5 +54,11 @@ def run():
         possible_orders(args[19], False)
     if args[20]:
         interactive()
+    if args[21] is not None:
+        lcg(args[21][0],args[21][1],args[21][2],args[21][3],args[21][4])
+    if args[23] is not None:
+        one_bit_commit(lcg(args[21][0],args[21][1],args[21][2],args[21][3],args[21][4]),args[22],args[23],args[21][3])
+
+
 
 run()
