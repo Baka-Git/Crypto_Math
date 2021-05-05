@@ -432,3 +432,66 @@ Output:"        Isomorphic
                 π = / 1, 2, 3, 4 \
                     \ 1, 4, 2, 3 /      "
 ```
+## Permutation_1 and Permutation_2
+- help function for giving permutation for Inverse Permutation, Composition and Permutation of Graph functions
+```
+Example of Permutation
+π = / 1, 2, 3, 4 \    1. Line
+    \ 1, 4, 2, 3 /    2. Line
+```
+- only second line is given as an argument for function
+```
+Format: --permutation_1 PERMUTATION
+        or
+        --permutation_2 PERMUTATION
+
+Example: --permutation_1 1,4,2,3
+
+Output: None
+```
+## Inverse Permutation
+- function for computing of inverse permutation for given one  
+- **Permutation_1 parameter is required!**
+```
+Format: --permutation_1 PERMUTATION --inverse_permutation
+
+Example: --permutation_1 2,3,4,1 --inverse_permutation
+
+Output:"        Permutation
+                π = / 1, 2, 3, 4 \
+                    \ 2, 3, 4, 1 /
+                Inverse
+                π^-1 = / 1, 2, 3, 4 \
+                       \ 4, 1, 2, 3 /
+                Composition
+                            / 1, 2, 3, 4 \
+                π ◦ π^-1 = |  4, 1, 2, 3  |
+                            \ 1, 2, 3, 4 /      "
+```
+## Composition
+- function for computing Composite of two given permutations
+- **Permutation_1 and Permutation_2 parameters are required!**
+```
+Format: --permutation_1 PERMUTATION_1 --permutation_2 PERMUTATION_2 --composition
+
+Example: --permutation_1 4,3,1,2 --permutation_2 4,1,2,3 --composition
+
+Output:"        Composition
+                            / 1, 2, 3, 4 \
+                π ◦ π^-1 = |  4, 1, 2, 3  |
+                            \ 2, 4, 3, 1 /        "
+```
+## Permutation of Graph
+- function for doing permutation for given graph
+- **Graph_a and Permutation_1 parameters are required!**
+```
+Format: --graph_a EDGE_A_1/EDGE_A_2/... --permutation_1 PERMUTATION --permut_graph 
+
+Example: --graph_a 1,2/1,3/2,4/3,4/1,4 --permutation_1 2,3,4,1 --permut_graph 
+
+Output:"        Permutation of Graph
+                φ = / 1, 2, 3, 4 \
+                    \ 2, 3, 4, 1 /
+                Given Graph G = ([1, 2, 3, 4], [[1, 2], [1, 3], [2, 4], [3, 4], [1, 4]])
+                New Graph Gx = ([1, 2, 3, 4], [[2, 3], [2, 4], [3, 1], [4, 1], [2, 1]]) "
+```

@@ -5,14 +5,15 @@ from Modules.train import interactive
 from Modules.commitments_tools import *
 from Modules.graph_tools import *
 
+
 def run():
     args = parse()
-    #print(args)
+    # print(args)
     if args is False:
         print("Wrong arguments were given!")
         return False
     if args[0] is not None:
-        gcd(args[0][0], args[0][1],True)
+        gcd(args[0][0], args[0][1], True)
     if args[1] is not None:
         factorization(args[1][0])
     if args[2] is not None:
@@ -55,11 +56,18 @@ def run():
     if args[20]:
         interactive()
     if args[21] is not None:
-        lcg(args[21][0],args[21][1],args[21][2],args[21][3],args[21][4])
+        lcg(args[21][0], args[21][1], args[21][2], args[21][3], args[21][4])
     if args[23] is not None:
-        one_bit_commit(lcg(args[21][0],args[21][1],args[21][2],args[21][3],args[21][4]),args[22],args[23],args[21][3])
+        one_bit_commit(lcg(args[21][0], args[21][1], args[21][2], args[21][3], args[21][4]), args[22], args[23],
+                       args[21][3])
     if args[26]:
-        is_two_graphs_isomorphic(args[24],args[25])
+        is_two_graphs_isomorphic(args[24], args[25])
+    if args[29]:
+        inverse_permutation(args[27])
+    if args[30]:
+        composition(args[27], args[28])
+    if args[31]:
+        permutation_of_graph(args[24], args[27])
 
 
 run()
