@@ -150,15 +150,17 @@ def parse():
              "A,C,SEED,COUNTER --r_value R_1,R_2,... --one_bit_com B. \nExample: '--lcg 11,3,4,2,3 --r_value 1,0,"
              "1 --one_bit_com 1' "
     )
-    parser.add_argument("--graph_a",help="Help function for Isomorphic function, gives information about edges of graphs. Format: --graph_a EDGE_1/EDGE_2/EDGE_3/...\nExample for G1: --graph_a 1,2/2,3/3,4")
+    parser.add_argument("--graph_a",
+                        help="Help function for Isomorphic function, gives information about edges of graphs. Format: --graph_a EDGE_1/EDGE_2/EDGE_3/...\nExample for G1: --graph_a 1,2/2,3/3,4")
     parser.add_argument("--graph_b",
                         help="Help function for Isomorphic function, gives information about edges of graphs. Format: --graph_b EDGE_1/EDGE_2/EDGE_3/...\nExample for G1: --graph_a 1,2/2,3/3,")
-    parser.add_argument("--is_isomorphic",help="Function for deciding if two graphs are isomorphic. Graph_a and "
-                                               "Grap_b parameters are requiredFormat: --graph_a EDGE_A_1/EDGE_A_2/... "
-                                               "--graph_b EDGE_A_1/EDGE_A_2/... --is_isomorphic\nExample: --graph_a "
-                                               "1,2/2,3/3,4 --graph_b 1,4/4,2/2,3 --is_isomorphic",action="store_true")
+    parser.add_argument("--is_isomorphic", help="Function for deciding if two graphs are isomorphic. Graph_a and "
+                                                "Grap_b parameters are requiredFormat: --graph_a EDGE_A_1/EDGE_A_2/... "
+                                                "--graph_b EDGE_A_1/EDGE_A_2/... --is_isomorphic\nExample: --graph_a "
+                                                "1,2/2,3/3,4 --graph_b 1,4/4,2/2,3 --is_isomorphic",
+                        action="store_true")
     args = parser.parse_args()
-    # print(args)
+    #print(args)
     args = control(args)
     return args
 
@@ -274,9 +276,9 @@ def control(args):
         if one_bit_com is False or lcg is None or r_value is None or len(r_value) != lcg[4]:
             return False
 
-    graph_a=args.graph_a
+    graph_a = args.graph_a
     if graph_a is not None:
-        graph_a=get_graph(graph_a)
+        graph_a = get_graph(graph_a)
         if graph_a is False:
             return False
     graph_b = args.graph_b
@@ -284,7 +286,7 @@ def control(args):
         graph_b = get_graph(graph_b)
         if graph_b is False:
             return False
-    is_isomorphic=args.is_isomorphic
+    is_isomorphic = args.is_isomorphic
     if is_isomorphic is not None or is_isomorphic is not False:
         if graph_a is None or graph_b is None:
             return False
@@ -308,7 +310,7 @@ def control(args):
 
     return [gcd, factor, crt, inverse, phi, group, orders_of_group, curve, p_point, q_point, field, point_on_curve,
             order_of_ec, add_points_ec, order_of_the_one_point, order_of_all_points, mov_attack, get_z_x_table,
-            help_bilinear, possible_orders, test, lcg, r_value, one_bit_com, graph_a,graph_b,is_isomorphic]
+            help_bilinear, possible_orders, test, lcg, r_value, one_bit_com, graph_a, graph_b, is_isomorphic]
 
 
 def get_ints(args):
@@ -342,16 +344,19 @@ def get_crt_info(args):
                 return False
         list_of_x_and_mods.append(help_list)
     return list_of_x_and_mods
+
+
 def get_graph(args):
-    list_of_lines=args.split("/")
-    graph=[]
+    list_of_lines = args.split("/")
+    graph = []
     for line in list_of_lines:
-        help_value=line.split(",")
-        if len(help_value) !=2:
+        help_value = line.split(",")
+        if len(help_value) != 2:
             return False
-        a=get_int(help_value[0])
-        b=get_int(help_value[1])
+        a = get_int(help_value[0])
+        b = get_int(help_value[1])
         if a is False or b is False:
             return False
         else:
-            graph.append([a,b])
+            graph.append([a, b])
+    return graph

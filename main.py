@@ -7,7 +7,7 @@ from Modules.graph_tools import *
 
 def run():
     args = parse()
-
+    print(args)
     if args is False:
         print("Wrong arguments were given!")
         return False

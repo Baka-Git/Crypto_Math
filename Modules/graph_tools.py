@@ -197,18 +197,18 @@ def is_two_graphs_isomorphic(connections_1, connections_2):
                 "\n    \\ "+line_2+" /")
         else:
             print("Graphs are NOT Isomorphic!")
-a = [[1, 2], [2, 3], [3, 4]]
-b = [[1, 4], [4, 2], [2, 3]]
+#a = [[1, 2], [2, 3], [3, 4]]
+#b = [[1, 4], [4, 2], [2, 3]]
 
 # find_max_vert(a)
 # find_degree(2,a)
 # find_degrees(4, a)
-graph_1 = Graph(a)
-graph_2 = Graph(b)
-my_list = []
-find_graph(my_list, [], [1, 2, 3, 4], [1, 2, 3, 4], graph_1, graph_2)
+#graph_1 = Graph(a)
+#graph_2 = Graph(b)
+#my_list = []
+#find_graph(my_list, [], [1, 2, 3, 4], [1, 2, 3, 4], graph_1, graph_2)
 # print(my_list)
-check_graph(my_list, graph_1, graph_2)
+#check_graph(my_list, graph_1, graph_2)
 
 # c = [[1, 3], [1, 4], [1, 5], [2, 3], [3, 4]]
 # d = [[1, 4], [2, 5], [3, 4], [3, 5], [4, 5]]
@@ -218,4 +218,4 @@ check_graph(my_list, graph_1, graph_2)
 # find_graph(my_new_list, [], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], graph3, graph4)
 # print(my_new_list)
 # check_graph(my_new_list, graph3, graph4)
-is_two_graphs_isomorphic(a, b)
+#is_two_graphs_isomorphic(a, b)
