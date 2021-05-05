@@ -29,7 +29,9 @@ Program should be run from terminal by command: python3 main.py ARGUMENTS
 - find Greatest Common Divisor of two given numbers
 ```
 Format: -g NUMBER_X,NUMBER_Y
+
 Example: -g 15,3
+
 Output: "GCD is 3"
 ```
 
@@ -38,8 +40,10 @@ Output: "GCD is 3"
 - factorized given number
 ```
 Format: -f NUMBER
+
 Example: -f 15
-Output: "Number 15 can be factorize to: [3, 5]"
+
+Output: "       Number 15 can be factorize to: [3, 5]"
 ```
 
 ## Chinese Remainder Theorem (CTR)
@@ -62,7 +66,9 @@ Output:"    M: 35
 - find inverse number for given number in Multiplicative Group
 ```
 Format: -i NUMBER,MODULUS
+
 Example: -i 5,11
+
 Output:"Inverse of number 5 is 9"
 ```
 
@@ -71,7 +77,9 @@ Output:"Inverse of number 5 is 9"
 - compute Euler number for given number
 ```
 Format: -p NUMBER
+
 Example: -p 11
+
 Output:"Euler function of number 11 is 10"
 ```
 
@@ -80,13 +88,17 @@ Output:"Euler function of number 11 is 10"
 - find multiplicative group for given number
 ```
 Format: --group NUMBER
+
 Example: --group 11
+
 Output:"Group is: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
 ```
 - find orders for multiplicative group for given number
 ```
 Format: --orders_of_group NUMBER
+
 Example: --orders_of_group 11
+
 Output:"    Group is: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
             [1] have order 1
             [10] have order 2
@@ -103,8 +115,10 @@ Example of format for equation of curve: A0* y^2 + A1 * y + A2 * y * x = A3 * x^
 WARNING!!! If A0 is negative, for example -1, write instead of symbol "-" symbol"/". Example: -1 -> /1
 ```
 Format: --curve A0,A1,A2,A3,A4,A5,A6
+
 Example: Curve is y^2 = x^3 + 2* x + 1 -> 1* y^2 + 0 * y + 0 * y * x = 1 * x^3 + 0 * x^2 + 2 * x + 1
         --curve 1,0,0,1,0,1,1
+
 Output:"Elliptic curve: y^2 + 0 * y + 0 * xy = x^3 + 0 * x^2 + 1 * x + 1"
 ```
 
@@ -114,8 +128,10 @@ Output:"Elliptic curve: y^2 + 0 * y + 0 * xy = x^3 + 0 * x^2 + 1 * x + 1"
 WARNING!!! If X is negative, for example -1, write instead of symbol "-" symbol"/". Example: -1 -> /1
 ```
 Format: --p_point X,Y
+
 Example:    P is [-1,-2] then write: --p_point /1,-2
             Q is [1,2] then write: --q_point 1,2Example
+
 Output: NO OUTPUT!
 ```
 
@@ -133,7 +149,9 @@ Output: NO OUTPUT!
 MUST GIVEN PARAMETER!!!: curve, field
 ```
 Format: --curve A0,A1,A2,A3,A4,A5,A6 --field FIELD --order_of_ec
+
 Example: --curve 1,0,0,1,0,-1,-1  --field 7 --order_of_ec
+
 Output:"    Given curve is elliptic.
             Elliptic curve: y^2 + 0 * y + 0 * xy = x^3 + 0 * x^2 - 1 * x - 1
              x  | x part | y^2 | y   | Points
@@ -153,8 +171,10 @@ Output:"    Given curve is elliptic.
 MUST GIVEN PARAMETER!!!: p_point, curve, field
 ```
 Format: --p_point X,Y --curve A0,A1,A2,A3,A4,A5,A6 --field FIELD --point_on_curve
+
 Example: --p_point 0,1 --field 7 --curve 1,0,0,1,0,2,1 --point_on_curve
-Output:"Point (0,1) is on elliptic curve!"
+
+Output:"        Point (0,1) is on elliptic curve!       "
 ```
 
 ## Adding points on EC
@@ -164,8 +184,10 @@ Output:"Point (0,1) is on elliptic curve!"
 MUST GIVEN PARAMETER!!!: p_point, q_point,curve, field
 ```
 Format: --p_point Xp,Yp --q_point Xq,Yq --curve A0,A1,A2,A3,A4,A5,A6 --field FIELD --point_on_curve
+
 Example: --p_point 1,2 --q_point 0,1 --field 7 --curve 1,0,0,1,0,2,1 --add_points_ec
-Output:"P =  [1, 2], Q =  [0, 1], R = P + Q =  [0, 6]"
+
+Output:"        P =  [1, 2], Q =  [0, 1], R = P + Q =  [0, 6]   "
 ```
 
 ## Order of point on EC
@@ -174,7 +196,9 @@ Output:"P =  [1, 2], Q =  [0, 1], R = P + Q =  [0, 6]"
 MUST GIVEN PARAMETER!!!: p_point, curve, field
 ```
 Format: --p_point X,Y --curve A0,A1,A2,A3,A4,A5,A6 --field FIELD --order_of_the_one_point
+
 Example: --p_point 4,1 --curve 1,0,0,1,0,-1,1 --field 5 --order_of_the_one_point
+
 Output:"    Given curve is elliptic.
             Elliptic curve: y^2 + 0 * y + 0 * xy = x^3 + 0 * x^2 - 1 * x + 1
             Order is: 4 "
@@ -185,7 +209,9 @@ Output:"    Given curve is elliptic.
 MUST GIVEN PARAMETER!!!: curve, field
 ```
 Format: --curve A0,A1,A2,A3,A4,A5,A6 --field FIELD --order_of_all_point
+
 Example: --curve 1,0,0,1,0,-1,1 --field 5 --order_of_all_point
+
 Output:"    Given curve is elliptic.
             Elliptic curve: y^2 + 0 * y + 0 * xy = x^3 + 0 * x^2 - 1 * x + 1
             Given curve is elliptic.
@@ -203,7 +229,9 @@ Output:"    Given curve is elliptic.
 - output is secret value of a
 ```
 Format: --mov_attack SECRET,GENERATOR,ORDER
+
 Example: Known parameters: E[P,aP] = 5, E[P,P] = 2, order of EC is 10 --> write: --mov_attack 5,2,10
+
 Output:"Secret is: 4"
 ```
 
@@ -213,7 +241,9 @@ Output:"Secret is: 4"
 ```
 Formats: --possible_orders OLD_ORDER,NEW_ORDER
 -in case we DO NOT change order of EC format is: --possible_orders ORDER
+
 Example: --possible_orders 5,15
+
 Output:"Possible orders are: [1, 5]"
 ```
 
@@ -221,7 +251,9 @@ Output:"Possible orders are: [1, 5]"
 - function for getting overview of all bilinear operations
 ```
 Format: --help_bilinear
+
 Example: --help_bilinear
+
 Output:"    e(P; O) = e(O; Q) = 1
 
             e(-P; Q) = e(P; Q)^1 = e(P; -Q)
@@ -246,16 +278,18 @@ Output:"    e(P; O) = e(O; Q) = 1
 - function for generating help table of Z_x, which can be used for EC Diffie-Hellman.
 ```
 Format: --get_z_x_table GENERATOR,MODULUS
+
 Example: --get_z_x_table 2,5
+
 Output:"    [1, 1, 1, 1]
             [1, 2, 4, 3]
             [1, 4, 1, 4]
             [1, 3, 4, 2]    "
 ```
 
-# The training module
+## The training module
 
-## tests
+### tests
 - function to practice some elliptic curve calculations 
 ```
 Format: --tests
@@ -270,7 +304,7 @@ What types of questions are there?
 + What are the possible orders of points for a curve? Num1, Num2, ..., NumX
 + What is the order of this curve? Num
 
-#  Linear Congruential Generator (LCG)
+##  Linear Congruential Generator (LCG)
 - function for computation pseudorandom values by algorithm:
 ```
 X_0 = s
@@ -281,21 +315,25 @@ X_2 = ( a * X_1 + c ) mod Prime
 - PRIME is prime number, A is a, C is c, SEED is s, COUNTER is number of random values to generate
 ```
 Format:  --lcg PRIME,A,C,SEED,COUNTER
+
 Example: --lcg 11,3,4,2,3
+
 Output:"        LCG
                 Number of random numbers is 3, prime p is 11, a = 3, c = 4 and seed X_0 = s = 2
                 X_0 = 2
                 X_1 = 10
                 X_2 = 1 "
 ```
-# R Value
+## R Value
 - help function for One-bit Commitment function
 ```
 Format:  --r_value R_1,R_2,R_3,...
+
 Example: --r_value 1,0,1
+
 Output:`NO OUTPUT
 ```
-# One-bit Commitment
+## One-bit Commitment
 - function for demonstation of One-bit Commitment algorithm:
 ```
 Alice                                   Bob
@@ -321,7 +359,9 @@ Alice sends Bob opening (b,s)
 - function **REQUIRE** enabling of **lcg** and **r_value** functions
 ```
 Format:  --lcg PRIME,A,C,SEED,COUNTER --r_value R_1,R_2,R_3,... --one_bit_com B_COMMITMENT
+
 Example: --lcg 11,3,4,2,3 --r_value 1,0,1 --one_bit_com 1
+
 Output:"        LCG
                 Number of random numbers is 3, prime p is 11, a = 3, c = 4 and seed X_0 = s = 2
                 X_0 = 2
@@ -332,4 +372,63 @@ Output:"        LCG
                 Alice choose b = 1
                 Alice sends c = [1, 0, 0]
                 Alice sends opening (b,s) = (1, 2)      "
+```
+## Graph_a and Graph_b
+- help function for Isomorphic function, gives information about edges of graphs
+```
+Format of EDGE: VERTICE_1,VERTICE_2
+
+Format: --graph_a EDGE_1/EDGE_2/EDGE_3/...
+        or
+        --graph_b EDGE_1/EDGE_2/EDGE_3/...
+
+Graph G1
+    3   
+   / \  
+  2   4   
+ /       
+1   
+
+Example for G1: --graph_a 1,2/2,3/3,4
+
+Output: None      
+```
+
+## Isomorphic of Graphs
+- function for deciding if two graphs are isomorphic
+```
+Graph G1  |  Graph G2
+    3     |  
+   / \    |   1   2
+  2   4   |    \ / \
+ /        |     3   4
+1         |
+```
+2 Graphs are isomorphic, if they have:
++ same number of vertices
++ same number of edges
++ same degree
++ same "connections"
+
+**Graph_a and Graph_b parameters are required!** 
+```
+Format: --graph_a EDGE_A_1/EDGE_A_2/... --graph_b EDGE_A_1/EDGE_A_2/... --is_isomorphic
+
+Example: --graph_a 1,2/2,3/3,4 --graph_b 1,4/4,2/2,3 --is_isomorphic
+
+Output:"        Isomorphic
+                G1 = [1, 2, 3, 4], [[1, 2], [2, 3], [3, 4]]
+                G2 = [1, 2, 3, 4], [[1, 4], [4, 2], [2, 3]]
+                 _____________________________________
+                | Graph         | G1       | G2       |
+                | # Vertices    | 4        | 4        |
+                | # Edges       | 3        | 3        |
+                | Degree        | 2        | 2        |
+                | Connections   | Ok       | Ok       |
+                |_______________|__________|__________|
+                Graphs are Isomorphic!
+                
+                Permutation
+                π = / 1, 2, 3, 4 \
+                    \ 1, 4, 2, 3 /      "
 ```
