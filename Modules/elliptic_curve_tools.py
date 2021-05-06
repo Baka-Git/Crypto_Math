@@ -167,7 +167,7 @@ def add_point(point_p, point_q, f, curve, regime):
         b = find_inverse(2 * point_p[1], f, False)
         
         lambdas = a * b % f
-        
+        print("Lambda is: " + str(lambdas))
         x_r = (lambdas ** 2 - 2 * point_p[0]) % f
         r = [x_r, (lambdas * (point_p[0] - x_r) - point_p[1]) % f]
     

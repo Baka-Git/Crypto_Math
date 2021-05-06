@@ -105,6 +105,13 @@ Output:"    Group is: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
             [3, 4, 5, 9] have order 5
             [2, 6, 7, 8] have order 10 -> GENERATORS!   "
 ```
+## Find SubGroup
+- function for finding subgroup for generator of different order than generator of group, GENERATOR is for subgroup, MODULUS is for the orginal group
+```
+Format: --sub_group GENERATOR,MODULUS
+Example: --sub_group 5,11
+Output:"        Subgroup of generator g = 5 is: [5, 3, 4, 9, 1] "
+```
 
 # Elliptic Curves
 

@@ -68,6 +68,8 @@ def run():
         composition(args[27], args[28])
     if args[31]:
         permutation_of_graph(args[24], args[27])
+    if args[32] is not None:
+        find_sub_group(args[32][0],args[32][1])
 
 
 run()

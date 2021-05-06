@@ -52,7 +52,8 @@ def parse():
         help="Function for finding orders of all elements of multiplicative group made of given number. \nExample: "
              "'--orders_of_group 13' "
     )
-
+    parser.add_argument("--sub_group",
+                        help="Function for finding subgroup for generator of different order than generator of group, GENERATOR is for subgroup, MODULUS is for the orginal group. Format: --sub_group GENERATOR,MODULUS\nExample: ' --sub_group 5,11'")
     parser.add_argument(
         "--curve",
         help="Function for giving program your curve, if no athor function is enabled, program check if given curve "
@@ -199,7 +200,7 @@ def parse():
                              "--permut_graph \nExample: ' --graph_a 1,2/1,3/2,4/3,4/1,4 --permutation_1 2,3,4,"
                              "1 --permut_graph' ", action="store_true")
     args = parser.parse_args()
-    #print(args)
+    # print(args)
     args = control(args)
     return args
 
@@ -356,7 +357,11 @@ def control(args):
     if permut_graph is not False and permut_graph is not None:
         if permutation_1 is None or graph_a is None:
             return False
-
+    sub_group = args.sub_group
+    if sub_group is not None:
+        sub_group = get_ints(sub_group)
+        if sub_group is False or len(sub_group) != 2:
+            return False
     get_z_x_table = args.get_z_x_table
 
     if get_z_x_table is not None:
@@ -376,7 +381,7 @@ def control(args):
     return [gcd, factor, crt, inverse, phi, group, orders_of_group, curve, p_point, q_point, field, point_on_curve,
             order_of_ec, add_points_ec, order_of_the_one_point, order_of_all_points, mov_attack, get_z_x_table,
             help_bilinear, possible_orders, test, lcg, r_value, one_bit_com, graph_a, graph_b, is_isomorphic,
-            permutation_1, permutation_2, inverse_permutation, composition, permut_graph]
+            permutation_1, permutation_2, inverse_permutation, composition, permut_graph, sub_group]
 
 
 def get_ints(args):

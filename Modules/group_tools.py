@@ -3,7 +3,7 @@ def factorization(number):
     prime = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
     for pri in prime:
         fact_helper(number, pri, list_of_primes)
-    print("Number "+str(number)+" can be factorize to: "+str(list_of_primes))
+    print("Number " + str(number) + " can be factorize to: " + str(list_of_primes))
     return list_of_primes
 
 
@@ -14,25 +14,28 @@ def fact_helper(number, prime, list_of_primes):
         fact_helper(number, prime, list_of_primes)
 
 
-def gcd(x, y,regime):
+def gcd(x, y, regime):
     if y == 0:
         if regime:
-            print("GCD is "+str(x))
+            print("GCD is " + str(x))
         return x
     else:
-        return gcd(y, x % y,regime)
+        return gcd(y, x % y, regime)
 
 
 def find_inverse(num, mod, regime):
     for i in range(1, int(mod)):
         if (i * num) % mod == 1:
             if regime:
-                print("Inverse of number "+str(num)+" is "+str(i))
+                print("Inverse of number " + str(num) + " is " + str(i))
             return i
+    if (regime):
+        print("Value " + str(num) + " does NOT have inverse number in Group_" + str(mod) + "!")
+        return False
 
 
 def crt(list_of_x_and_mods):
-    #print(list_of_x_and_mods)
+    # print(list_of_x_and_mods)
     m = 1
     for mod in list_of_x_and_mods:
         m *= mod[1]
@@ -59,14 +62,14 @@ def phi(number, regime):
         if gcd(number, i, False) == 1:
             num += 1
     if regime:
-        print("Euler function of number "+str(number)+" is "+str(num))
+        print("Euler function of number " + str(number) + " is " + str(num))
     return num
 
 
 def find_group_mult(number, regime):
     list_of_group = []
     for i in range(1, number):
-        if gcd(number, i,False) == 1:
+        if gcd(number, i, False) == 1:
             list_of_group.append(i)
     if regime:
         print("Group is: " + str(list_of_group))
@@ -102,10 +105,26 @@ def find_group_orders(number, regime):
         gen = ""
         if line[0] == len(group):
             gen = " -> GENERATORS!"
-        print(str(line[1:]) + " have order " + str(line[0]) + gen)
+        if regime:
+            print(str(line[1:]) + " have order " + str(line[0]) + gen)
     return list_of_orders
 
 
-
-#find_group_orders(5, True)
-#find_group_mult(5,True)
+def find_sub_group(generator, mod):
+    help_group = find_group_mult(mod, False)
+    try:
+        help_group.index(generator)
+    except:
+        print("Wrong arguments were given.")
+        return False
+    sub_group = []
+    for i in range(1, mod + 1):
+        result = generator ** i % mod
+        sub_group.append(generator ** i % mod)
+        if result == 1:
+            print("Subgroup of generator g = " + str(generator) + " is: " + str(sub_group))
+            return sub_group
+    print(sub_group)
+# find_group_orders(5, True)
+# find_group_mult(5,True)
+#find_sub_group(5,11)
